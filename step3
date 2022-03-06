@@ -2669,7 +2669,7 @@ add_menu() {
     tar -xvf menu.tar.gz && rm -rf menu.tar.gz  > /dev/null
     mkdir -p "${BASH_DIR}"/users
     mkdir -p /var/log/mykpa
-    mkdir -p /var/mykpa/wpcron
+    mkdir -p /mykpa/wpcron
     chmod 711 menu users wpcron
     chmod +x ./menu/* ./menu/*/* ./menu/*/*/* ./menu/*/*/*/* > /dev/null
     dos2unix ./menu/* > /dev/null
