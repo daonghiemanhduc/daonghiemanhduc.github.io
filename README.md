@@ -1,3 +1,4 @@
+# mykteam.com
 <p align="center"><strong>Auto Install & Optimize LEMP Stack on Ubuntu (18.04, 20.04)</strong></p>
 <p align="center"><strong>Author: Admin - MYKTEAM</strong></p>
 <p align="center"><strong>Home Page: <a href="https://mykteam.com">MYKTEAM Home page</a> , <a href="https://mykteam.com">mykteam.com - Share tips, resources, giftcode</a></strong></p>
