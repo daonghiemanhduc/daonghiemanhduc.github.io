@@ -2664,9 +2664,9 @@ END
 ############################################
 add_menu() {
     cd_dir "${BASH_DIR}"
-    rm -rf menu mykpa.conf ipaddress menu.tar.gz /usr/bin/mykpa
-    wget "${EXT_LINK}"/ubuntu/menu.tar.gz  > /dev/null
-    tar -xvf menu.tar.gz && rm -rf menu.tar.gz  > /dev/null
+    rm -rf menu mykpa.conf ipaddress menu.tar /usr/bin/mykpa
+    wget "${EXT_LINK}"/ubuntu/menu.tar  > /dev/null
+    tar -xvf menu.tar && rm -rf menu.tar  > /dev/null
     mkdir -p "${BASH_DIR}"/users
     mkdir -p /var/log/mykpa
     mkdir -p /mykpa/wpcron
