@@ -112,7 +112,7 @@ Script written in shell to install LEMP Stack (Nginx - MariaDB - PHP-FPM) on Ubu
 
 ## 7. Contact
 - Homepage: https://mykteam.com
-- Facebook: hhttps://www.facebook.com/mykitteam
+- Facebook: https://www.facebook.com/mykitteam
 - Email: admin@mykteam.com
 
 ## 8. Contributors & Credits
