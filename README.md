@@ -107,6 +107,7 @@ Script written in shell to install LEMP Stack (Nginx - MariaDB - PHP-FPM) on Ubu
 - Composer: https://getcomposer.org/
 - ClamAV: https://www.clamav.net/
 - ImunifyAV: https://www.imunify360.com/antivirus
+- CSF: https://configserver.com/
 
 ## 7. Contact
 - Homepage: https://mykteam.com
