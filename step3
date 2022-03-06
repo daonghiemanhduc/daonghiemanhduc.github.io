@@ -2702,8 +2702,8 @@ write_info() {
     touch /etc/mykpa.lock
     chmod 600 "${FILE_INFO}" /etc/mykpa.lock
 
-    if [[ ! -f "/var/mykpa/ipaddress" ]]; then
-        cat >>"/var/mykpa/ipaddress" <<END
+    if [[ ! -f "/mykpa/ipaddress" ]]; then
+        cat >>"/mykpa/ipaddress" <<END
 #!/bin/bash
 IPADDRESS=${IPADDRESS}
 END
