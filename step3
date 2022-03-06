@@ -2956,6 +2956,10 @@ net.ipv6.route.flush = 1
 EOsysctl
     sysctl -p
 }
+re_update(){
+	apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y
+}
+
 
 create_bash_dir
 set_email
@@ -3025,14 +3029,13 @@ setup_sftp
 add_menu
 write_info
 kernel_tweak
-
+re_update
 clear
 sleep 1
 
 printf "=========================================================================\n"
 printf "                    Cai dat thanh cong Ubuntu LEMP Stack                 \n"
 printf "                 File luu thong tin: %s\n" "${FILE_INFO}"
-printf "          Neu can ho tro vui long truy cap %s\n" "${AUTHOR_CONTACT}"
 printf "==========================================================================\n"
 printf "              Luu lai thong tin duoi day de truy cap SSH va phpMyAdmin    \n"
 printf "                  ${RED}%s${NC}\n           \n" "De mo Menu su dung lenh:  mykpa"
