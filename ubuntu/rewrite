@@ -1,6 +1,6 @@
 #!/bin/bash
 printf "%s\n" "Sua doi so phien ban"
-sed -i 's/script_version=0.2/script_version=0.3/g' /mykpa/.mykpa.conf
+sed -i 's/script_version=.*/script_version=0.3/g' /mykpa/.mykpa.conf
 cd /mykpa
 rm -rf rewrite
 clear
