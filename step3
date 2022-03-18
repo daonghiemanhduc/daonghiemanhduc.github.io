@@ -9,7 +9,7 @@ DIR=$(pwd)
 RED='\033[0;31m'
 NC='\033[0m'
 
-SCRIPTS_VERSION="0.2"
+SCRIPTS_VERSION="0.3"
 IPADDRESS=$(curl -s http://cyberpanel.sh/?ip)
 DIR=$(pwd)
 BASH_DIR="/mykpa"
@@ -43,7 +43,7 @@ SELECT_PHP_2="Lua chon phien ban PHP thu hai ban muon su dung:"
 LOGIN_NOTI3="De mo menu ban go lenh sau:  mykpa"
 
 # Random Port
-RANDOM_ADMIN_PORT=$(shuf -i 30001-40000 -n 1)
+RANDOM_ADMIN_PORT=$(shuf -i 40001-60000 -n 1)
 
 # Dir
 DEFAULT_DIR_WEB="/usr/share/nginx/html"
@@ -152,10 +152,10 @@ option_change_ssh_port() {
         case $opt in
         "Yes")
             prompt_ssh="y"
-            SSH_PORT="30000"
+            SSH_PORT="40000"
             sleep 1
-            printf "${RED}%s${NC}\n" "Port SSH moi là: 30000"
-            printf "${RED}%s${NC}\n" "Luu y: Voi Google Cloud, Alibaba Cloud, AWS cac ban can mo port 8282 trong tab Firewall"
+            printf "${RED}%s${NC}\n" "Port SSH moi là: 40000"
+            printf "${RED}%s${NC}\n" "Luu y: Voi Google Cloud, Alibaba Cloud, AWS cac ban can mo port moi trong tab Firewall"
             sleep 1
             break
             ;;
@@ -986,7 +986,7 @@ self_signed_ssl() {
     openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048
     openssl genrsa -out "${self_signed_dir}/server.key" 4096
     openssl req -new -key "${self_signed_dir}/server.key" \
-        -out "${self_signed_dir}/server.csr" -subj "/C=VN/ST=VN/L=Hanoi/O=MYKTEAM/OU=IT Department/CN=${IPADDRESS}"
+        -out "${self_signed_dir}/server.csr" -subj "/C=VN/ST=VN/L=VN/O=MYKTEAM/OU=IT Department/CN=${IPADDRESS}"
     openssl x509 -in "${self_signed_dir}/server.csr" -out "${self_signed_dir}/server.crt" \
         -req -signkey "${self_signed_dir}/server.key" -days 3650
 }
@@ -2957,6 +2957,8 @@ EOsysctl
     sysctl -p
 }
 install_csf(){
+	systemctl disable ufw
+	ufw disable
 	apt-get install libwww-perl liblwp-protocol-https-perl libgd-graph-perl -y
 	cd /usr/src
 	rm -fv csf.tgz
@@ -2968,6 +2970,20 @@ install_csf(){
 	echo Xoa file cai csf
 	cd /usr/src
 	rm -fv csf.tgz
+}
+config_csf(){
+	sed -i 's/TESTING = "1"/TESTING = "0"/g' /etc/csf/csf.conf
+if [[ "$prompt_ssh" =~ ^([yY]) ]]; then
+	sed -i 's/PORTS_sshd = "22"/PORTS_sshd = "40000"/g' /etc/csf/csf.conf
+fi
+	echo fix csf not running mail server
+	echo '#!/bin/sh' > /usr/sbin/sendmail
+	chmod +x /usr/sbin/sendmail
+	systemctl start csf
+	systemctl start lfd
+	systemctl enable csf
+	systemctl enable lfd
+	csf -r
 }
 re_update(){
 	apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y
@@ -3043,6 +3059,7 @@ add_menu
 write_info
 kernel_tweak
 install_csf
+config_csf
 re_update
 clear
 sleep 1
