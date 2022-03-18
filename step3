@@ -2956,6 +2956,19 @@ net.ipv6.route.flush = 1
 EOsysctl
     sysctl -p
 }
+install_csf(){
+	apt-get install libwww-perl liblwp-protocol-https-perl libgd-graph-perl -y
+	cd /usr/src
+	rm -fv csf.tgz
+	wget https://download.configserver.com/csf.tgz
+	tar -xzf csf.tgz
+	cd csf
+	sh install.sh
+	sleep 1
+	echo Xoa file cai csf
+	cd /usr/src
+	rm -fv csf.tgz
+}
 re_update(){
 	apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y
 }
@@ -3029,6 +3042,7 @@ setup_sftp
 add_menu
 write_info
 kernel_tweak
+install_csf
 re_update
 clear
 sleep 1
