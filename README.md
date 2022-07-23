@@ -9,6 +9,7 @@
 ########################################################################################
 
 Script written in shell to install LEMP Stack (Nginx - MariaDB - PHP-FPM) on Ubuntu (18.04, 20.04)
+111111111111
 
 ## 1. Script details:
 
