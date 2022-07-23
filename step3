@@ -3027,7 +3027,7 @@ default_vhost
 vhost_custom
 default_index
 default_error_page
-wp_rocket_nginx
+#wp_rocket_nginx
 php_global_config
 
 systemctl enable php"${PHP_VERSION}"-fpm
