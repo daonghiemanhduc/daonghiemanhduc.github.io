@@ -8,7 +8,7 @@ NC='\033[0m'
 
 OS=$(grep -oP '(?<=^ID=).+' /etc/os-release | tr -d '"')
 
-SCRIPT_LINK="https://pa.mykteam.com"
+SCRIPT_LINK="https://daonghiemanhduc.github.io/"
 OS_LIST="centos ubuntu almalinux"
 RAM_TOTAL=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
 LOW_RAM='400000'
