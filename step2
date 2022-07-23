@@ -8,7 +8,7 @@ rm -rf step2
 DIR=$(pwd)
 
 # Set link
-SCRIPT_LINK="https://pa.mykteam.com"
+SCRIPT_LINK="https://daonghiemanhduc.github.io/"
 
 welcome(){
     clear
