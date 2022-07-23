@@ -14,8 +14,8 @@ IPADDRESS=$(curl -s http://cyberpanel.sh/?ip)
 DIR=$(pwd)
 BASH_DIR="/mykpa"
 GITHUB_RAW_LINK="https://raw.githubusercontent.com"
-EXT_LINK="https://pa.mykteam.com"
-UPDATE_LINK="https://pa.mykteam.com/ubuntu/update"
+EXT_LINK="https://daonghiemanhduc.github.io/"
+UPDATE_LINK="https://daonghiemanhduc.github.io/ubuntu/update"
 FILE_INFO="${BASH_DIR}/.mykpa.conf"
 HOSTNAME=$(hostname)
 PHP2_RELEASE="no"
@@ -28,7 +28,7 @@ AUTHOR_CONTACT="https://www.facebook.com/mykitteam"
 PHPMYADMIN_VERSION=$(curl -s ${UPDATE_LINK}/version | grep "phpmyadmin_version=" | cut -f2 -d'=')
 MARIADB_VERSION=$(curl -s ${UPDATE_LINK}/version | grep "mariadb_version=" | cut -f2 -d'=')
 # shellcheck disable=SC2207
-PHP_LIST=($(curl -s https://pa.mykteam.com/ubuntu/update/version | grep "php_list=" | cut -f2 -d'='))
+PHP_LIST=($(curl -s https://daonghiemanhduc.github.io/ubuntu/update/version | grep "php_list=" | cut -f2 -d'='))
 
 # Set Lang
 OPTION_CHANGE_SSH="Ban co muon thay doi port SSH khong ? "
@@ -267,7 +267,7 @@ check_duplicate_php() {
 install_nginx(){
     apt-get install build-essential zlib1g-dev libpcre3 libpcre3-dev unzip uuid-dev -y
     apt autoremove -y
-    UPDATE_LINK="https://pa.mykteam.com/ubuntu/update"
+    UPDATE_LINK="https://daonghiemanhduc.github.io/ubuntu/update"
     MODULE_PATH="/usr/share/nginx_module"
     mkdir -p "${MODULE_PATH}"
     NGINX_VERSION=$(curl -s ${UPDATE_LINK}/version | grep "nginx_version=" | cut -f2 -d'=')
@@ -293,11 +293,11 @@ install_nginx(){
 
     cd_dir "${MODULE_PATH}"
     wget -O- http://nginx.org/download/nginx-"${NGINX_VERSION}".tar.gz | tar -xz
-    wget -O- https://pa.mykteam.com/ubuntu/addon/ngx_cache_purge-"${ngx_cache_purge_version}".tar.gz | tar -xz
-    wget -O- https://pa.mykteam.com/ubuntu/addon/openssl-OpenSSL_"${openssl_version}".tar.gz | tar -xz
-    wget -O- https://pa.mykteam.com/ubuntu/addon/pcre-"${pcre_version}".tar.gz | tar -xz
-    wget -O- https://pa.mykteam.com/ubuntu/addon/zlib-"${zlib_version}".tar.gz | tar -xz
-    wget -O- https://pa.mykteam.com/ubuntu/addon/headers-more-nginx-module-"${more_clear_headers_v}".tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/ngx_cache_purge-"${ngx_cache_purge_version}".tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/openssl-OpenSSL_"${openssl_version}".tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/pcre-"${pcre_version}".tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/zlib-"${zlib_version}".tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/headers-more-nginx-module-"${more_clear_headers_v}".tar.gz | tar -xz
     wget -O- https://github.com/vozlt/nginx-module-vts/archive/refs/tags/v"${nginx_module_vts_v}".tar.gz | tar -xz
 
     git clone --depth 1 https://github.com/google/ngx_brotli
@@ -487,7 +487,7 @@ install_phpmyadmin() {
     fi
     cd_dir "${DEFAULT_DIR_TOOL}"
 
-    wget -O- https://pa.mykteam.com/ubuntu/addon/phpMyAdmin-"${PHPMYADMIN_VERSION}"-english.tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/phpMyAdmin-"${PHPMYADMIN_VERSION}"-english.tar.gz | tar -xz
 
     mv phpMyAdmin-"${PHPMYADMIN_VERSION}"-english phpmyadmin
     rm -rf phpMyAdmin-"${PHPMYADMIN_VERSION}"-english.zip
@@ -944,7 +944,7 @@ mariadb_calculation() {
 install_optipng(){
     optipng_version=$(curl -s ${UPDATE_LINK}/version | grep "optipng_version=" | cut -f2 -d'=')
     cd_dir /opt
-    wget -O- https://pa.mykteam.com/ubuntu/addon/optipng-"${optipng_version}".tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/optipng-"${optipng_version}".tar.gz | tar -xz
     cd_dir optipng-"${optipng_version}"
     ./configure
     make
@@ -956,7 +956,7 @@ install_optipng(){
 install_jpegoptim(){
     jpegoptim_version=$(curl -s ${UPDATE_LINK}/version | grep "jpegoptim_version=" | cut -f2 -d'=')
     cd_dir /opt
-    wget -O- https://pa.mykteam.com/ubuntu/addon/jpegoptim-RELEASE."${jpegoptim_version}".tar.gz | tar -xz
+    wget -O- https://daonghiemanhduc.github.io/ubuntu/addon/jpegoptim-RELEASE."${jpegoptim_version}".tar.gz | tar -xz
     cd_dir jpegoptim-RELEASE."${jpegoptim_version}"
     ./configure
     make && make strip && make install
@@ -986,7 +986,7 @@ self_signed_ssl() {
     openssl dhparam -out /etc/nginx/ssl/dhparams.pem 2048
     openssl genrsa -out "${self_signed_dir}/server.key" 4096
     openssl req -new -key "${self_signed_dir}/server.key" \
-        -out "${self_signed_dir}/server.csr" -subj "/C=VN/ST=VN/L=VN/O=MYKTEAM/OU=IT Department/CN=${IPADDRESS}"
+        -out "${self_signed_dir}/server.csr" -subj "/C=VN/ST=SG/L=SG/O=AliShopping/OU=AliShopping/CN=${IPADDRESS}"
     openssl x509 -in "${self_signed_dir}/server.csr" -out "${self_signed_dir}/server.crt" \
         -req -signkey "${self_signed_dir}/server.key" -days 3650
 }
@@ -1067,7 +1067,7 @@ http {
     limit_req_zone \$binary_remote_addr zone=req_limit_per_ip:10m rate=1r/s;
 
     # Custom Response Headers
-    more_set_headers 'Server: MYKTEAM.COm';
+    more_set_headers 'Server: alishopping.app';
     more_set_headers 'X-Content-Type-Options    "nosniff" always';
     more_set_headers 'X-XSS-Protection          "1; mode=block" always';
     more_set_headers 'Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always';
@@ -2613,24 +2613,24 @@ install_rclone() {
     curl https://rclone.org/install.sh | sudo bash
 }
 
-install_wp_cli_packages() {
-    sed -i '/memory_limit/d' "$PHP1_INI_PATH"/00-mykpa-custom.ini
-    sed -i '/memory_limit/d' "$PHP1_CLI_PATH"/00-mykpa-custom.ini
-    echo "memory_limit = -1" >>"$PHP1_INI_PATH"/00-mykpa-custom.ini
-    echo "memory_limit = -1" >>"$PHP1_CLI_PATH"/00-mykpa-custom.ini
+# install_wp_cli_packages() {
+    # sed -i '/memory_limit/d' "$PHP1_INI_PATH"/00-mykpa-custom.ini
+    # sed -i '/memory_limit/d' "$PHP1_CLI_PATH"/00-mykpa-custom.ini
+    # echo "memory_limit = -1" >>"$PHP1_INI_PATH"/00-mykpa-custom.ini
+    # echo "memory_limit = -1" >>"$PHP1_CLI_PATH"/00-mykpa-custom.ini
 
-    systemctl restart php"${PHP_VERSION}"-fpm
+    # systemctl restart php"${PHP_VERSION}"-fpm
 
-    wp package install iandunn/wp-cli-rename-db-prefix --allow-root
-    wp package install trepmal/wp-revisions-cli --allow-root
+    # wp package install iandunn/wp-cli-rename-db-prefix --allow-root
+    # wp package install trepmal/wp-revisions-cli --allow-root
 
-    sed -i '/memory_limit/d' "$PHP1_INI_PATH"/00-mykpa-custom.ini
-    sed -i '/memory_limit/d' "$PHP1_CLI_PATH"/00-mykpa-custom.ini
-    echo "memory_limit = ${MAX_MEMORY}M" >>"$PHP1_INI_PATH"/00-mykpa-custom.ini
-    echo "memory_limit = ${MAX_MEMORY}M" >>"$PHP1_CLI_PATH"/00-mykpa-custom.ini
+    # sed -i '/memory_limit/d' "$PHP1_INI_PATH"/00-mykpa-custom.ini
+    # sed -i '/memory_limit/d' "$PHP1_CLI_PATH"/00-mykpa-custom.ini
+    # echo "memory_limit = ${MAX_MEMORY}M" >>"$PHP1_INI_PATH"/00-mykpa-custom.ini
+   echo "memory_limit = ${MAX_MEMORY}M" >>"$PHP1_CLI_PATH"/00-mykpa-custom.ini
 
 
-    systemctl restart php"${PHP_VERSION}"-fpm
+    # systemctl restart php"${PHP_VERSION}"-fpm
 }
 
 ############################################
@@ -3021,7 +3021,7 @@ if [[ "${MULTI_PHP}" =~ ^(Y|y)$ ]]; then
 fi
 
 create_nginx_conf
-create_wordpress_conf
+#create_wordpress_conf
 create_extra_conf
 default_vhost
 vhost_custom
@@ -3038,7 +3038,7 @@ config_my_cnf
 
 install_phpmyadmin
 install_composer
-install_wp_cli
+#install_wp_cli
 
 install_optipng
 install_jpegoptim
@@ -3058,9 +3058,9 @@ setup_sftp
 add_menu
 write_info
 kernel_tweak
-install_csf
-config_csf
-re_update
+#install_csf
+#config_csf
+#re_update
 clear
 sleep 1
 
